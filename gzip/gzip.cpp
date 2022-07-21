@@ -2,15 +2,48 @@
 #include <iostream>
 #include "FileCompressHuffman.h"
 
-void TestCompress() {
-	std::string filePath = "zdz.txt";
-	FileCompressHuffman fio;
-	fio.CompressFile(filePath);
-}
 
+
+void Menu() {
+	std::cout << "*************************************************" << std::endl;
+	std::cout << "********  张德忠的压缩系统 	      ***********" << std::endl;
+	std::cout << "********  0: 退出		      ***********" << std::endl;
+	std::cout << "********  1: huffman 压缩	      ***********" << std::endl;
+	std::cout << "********  2: huffman 解压缩           ***********" << std::endl;
+	std::cout << "*************************************************" << std::endl;
+
+}
 int main()
-{	
-	TestCompress();
+{
+	FileCompressHuffman fcp;
+	int input = -1;
+	std::string fileName;
+	bool isQuit = false;
+	while (true) {
+		Menu();
+		std::cout << "请输入操作: ";
+		std::cin >> input;
+		switch (input) {
+		case 0: isQuit = true;
+			break;
+		case 1:
+			std::cout << "请输入要压缩的文件全路径: " << std::endl;
+			std::cin >> fileName;
+			fcp.CompressFile(fileName);
+			std::cout << "压缩完成!" << std::endl;
+			break;
+		case 2:
+			std::cout << "请输入要解压缩的文件全路径: " << std::endl;
+			std::cin >> fileName;
+			fcp.UNCompressFile(fileName);
+			std::cout << "解压缩完成!" << std::endl;
+			break;
+		default: 
+			std::cout << "非法操作符!" << std::endl;
+			break;
+		}
+		if (isQuit) break;
+	}
 	return 0;
 }
 
