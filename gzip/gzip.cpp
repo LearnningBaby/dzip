@@ -1,8 +1,7 @@
 ﻿#pragma warning(disable : 4996)
 #include <iostream>
 #include "FileCompressHuffman.h"
-
-
+#include "LZ77.h"
 
 void Menu() {
 	std::cout << "*************************************************" << std::endl;
@@ -13,6 +12,7 @@ void Menu() {
 	std::cout << "*************************************************" << std::endl;
 
 }
+#if 0 
 int main()
 {
 	FileCompressHuffman fcp;
@@ -46,4 +46,19 @@ int main()
 	}
 	return 0;
 }
+#endif 
 
+void TestLZ77Compress() {
+	LZ77 lz;
+	lz.compressFile("zdz.txt");
+}
+
+void TestLZ77UNCompress() {
+	LZ77 lz;
+	lz.UNCompressFile("zzz.lzp");
+}
+int main() {
+	TestLZ77Compress();
+	TestLZ77UNCompress();
+	return 0;
+}
