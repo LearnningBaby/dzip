@@ -1,8 +1,4 @@
-#pragma warning(disable : 4996)
 #include "FileCompressHuffman.h"
-#include "HuffmanTree.hpp"
-#include "common.h"
-
 // constructor 
 FileCompressHuffman::FileCompressHuffman() {
 	_fileInfo.resize(256, 0);
@@ -79,13 +75,14 @@ void FileCompressHuffman::CompressFile(const std::string& filePath) {
 		}
 	}
 	// 最后一次bits中的8个bit可能没有填充满
-	if (bitCount > 0 && bitCount < 8) {
+	if (!bitCount) {
 		bits <<= (8 - bitCount);
 		fputc(bits, fout);
 	}
 	fclose(fIn);
 	fclose(fout);
 }
+
 
 
 
@@ -114,7 +111,7 @@ void  FileCompressHuffman::UNCompressFile(const std::string& filePath) {
 	unCompressFile += suffix;
 
 	// b. 读取频次信息总行数
-	std::string strInfo;
+	std::string strInfo = "";
 	GetLine(fIn, strInfo);
 	size_t lineCount = atoi(strInfo.c_str());
 
@@ -141,7 +138,7 @@ void  FileCompressHuffman::UNCompressFile(const std::string& filePath) {
 	unchar rdBuff[1024];
 	HuffmanTreeNode<ByteInfo>* cur = ht.GetRoot();
 	while (true) {
-		size_t rdSize = fread(rdBuff, 1024, 1, fIn);
+		size_t rdSize = fread(rdBuff, 1, 1024, fIn);
 		if (0 == rdSize) break;
 		for (size_t i = 0; i < rdSize; i++) {
 			unchar ch = rdBuff[i];
@@ -150,6 +147,7 @@ void  FileCompressHuffman::UNCompressFile(const std::string& filePath) {
 					cur = cur->_right;
 				else
 					cur = cur->_left;
+
 				ch <<= 1;
 
 				if (nullptr == cur->_left && nullptr == cur->_right) {
@@ -186,20 +184,22 @@ void FileCompressHuffman::GenerateHuffmanCode(HuffmanTreeNode<ByteInfo>* root) {
 
 	// 到这里root就是叶子!
 	if (nullptr == root->_left && nullptr == root->_right) {
-
+		std::string& chCode = _fileInfo[root->_weight._ch]._chCode;
 		HuffmanTreeNode<ByteInfo>* cur = root;
 		HuffmanTreeNode<ByteInfo>* parent = cur->_parent;
 		while (parent) {
 			if (cur == parent->_left)
-				_fileInfo[root->_weight._ch]._chCode += '0';
+				chCode += '0';
 			else
-				_fileInfo[root->_weight._ch]._chCode += '1';
+				chCode += '1';
+
 			cur = parent;
 			parent = cur->_parent;
 		}
-		reverse(_fileInfo[root->_weight._ch]._chCode.begin(), _fileInfo[root->_weight._ch]._chCode.end());
+		reverse(chCode.begin(), chCode.end());
 	}
 }
+
 
 // 写入头部信息(解压缩文件用)
 void FileCompressHuffman::WriteHeadInfo(const std::string& filePath, FILE* fout) {
@@ -223,8 +223,8 @@ void FileCompressHuffman::WriteHeadInfo(const std::string& filePath, FILE* fout)
 	}
 	headInfo += std::to_string(appearLineCount);
 	headInfo += '\n';
-	fwrite(headInfo.c_str(), headInfo.size(), 1, fout);
-	fwrite(chInfo.c_str(), chInfo.size(), 1, fout);
+	fwrite(headInfo.c_str(), 1, headInfo.size(), fout);
+	fwrite(chInfo.c_str(), 1, chInfo.size(), fout);
 }
 
 

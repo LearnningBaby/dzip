@@ -11,7 +11,7 @@ LZ77::~LZ77() {
 	}
 }
 
-void LZ77::compressFile(const string& fileName) {
+void LZ77::CompressFile(const string& fileName) {
 	// LZ77 是通用类型的压缩算法,文本文件以及二进制格式的文件都可以出处理
 	// 直接以二进制的方式打开
 	FILE* fIn = fopen(fileName.c_str(), "rb");
@@ -214,6 +214,13 @@ void LZ77::FillWindow(FILE* fIn, unll& lookahead, unshort& start) {
 
 // 解压文件
 void LZ77::UNCompressFile(const string& fileName) {
+
+	std::string filesuf = GetFileSuffix(fileName);
+	if ("lzp" != filesuf) {
+		std::cout << "压缩文件类型应该为filePath.lzp" << std::endl;
+		return;
+	}
+
 	FILE* fIn = fopen(fileName.c_str(), "rb");
 	if (nullptr == fIn) {
 		std::cout << "压缩文件打开失败" << std::endl;

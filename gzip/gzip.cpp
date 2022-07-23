@@ -16,19 +16,22 @@ void Menu() {
 }
 
 
-#if 0 
+
 int main()
 {
 	FileCompressHuffman fcp;
+	LZ77 lz;
 	int input = -1;
 	std::string fileName;
 	bool isQuit = false;
+
 	while (true) {
 		Menu();
 		std::cout << "请输入操作: ";
 		std::cin >> input;
 		switch (input) {
 		case 0: isQuit = true;
+			std::cout << "bye!" << std::endl;
 			break;
 		case 1:
 			std::cout << "请输入要压缩的文件全路径: " << std::endl;
@@ -42,6 +45,18 @@ int main()
 			fcp.UNCompressFile(fileName);
 			std::cout << "解压缩完成!" << std::endl;
 			break;
+		case 3:
+			std::cout << "请输入要压缩的文件全路径: " << std::endl;
+			std::cin >> fileName;
+			lz.CompressFile(fileName);
+			std::cout << "压缩完成!" << std::endl;
+			break;
+		case 4:
+			std::cout << "请输入要解压缩的文件全路径: " << std::endl;
+			std::cin >> fileName;
+			lz.UNCompressFile(fileName);
+			std::cout << "解压缩完成!" << std::endl;
+			break;
 		default: 
 			std::cout << "非法操作符!" << std::endl;
 			break;
@@ -50,13 +65,13 @@ int main()
 	}
 	return 0;
 }
-#endif 
 
 
 
 
 
 
+#if 0 
 void TestLZ77Compress() {
 	LZ77 lz;
 	lz.compressFile("zdz.txt");
@@ -71,3 +86,4 @@ int main() {
 	TestLZ77UNCompress();
 	return 0;
 }
+#endif 

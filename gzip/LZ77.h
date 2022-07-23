@@ -8,7 +8,7 @@ public:
 	LZ77();
 	~LZ77();
 
-	void compressFile(const string& fileName);
+	void CompressFile(const string& fileName);
 	void UNCompressFile(const string& fileName);
 
 private:
