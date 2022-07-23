@@ -151,6 +151,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="common.cpp" />
     <ClCompile Include="FileCompressHuffman.cpp" />
     <ClCompile Include="gzip.cpp" />
     <ClCompile Include="HashTable.cpp" />

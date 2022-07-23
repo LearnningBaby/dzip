@@ -9,9 +9,13 @@ void Menu() {
 	std::cout << "********  0: 退出		      ***********" << std::endl;
 	std::cout << "********  1: huffman 压缩	      ***********" << std::endl;
 	std::cout << "********  2: huffman 解压缩           ***********" << std::endl;
+	std::cout << "********  3: LZ77      压缩           ***********" << std::endl;
+	std::cout << "********  4: LZ77    解压缩           ***********" << std::endl;
 	std::cout << "*************************************************" << std::endl;
 
 }
+
+
 #if 0 
 int main()
 {
@@ -48,6 +52,11 @@ int main()
 }
 #endif 
 
+
+
+
+
+
 void TestLZ77Compress() {
 	LZ77 lz;
 	lz.compressFile("zdz.txt");
@@ -55,7 +64,7 @@ void TestLZ77Compress() {
 
 void TestLZ77UNCompress() {
 	LZ77 lz;
-	lz.UNCompressFile("zzz.lzp");
+	lz.UNCompressFile("zdz.lzp");
 }
 int main() {
 	TestLZ77Compress();

@@ -14,6 +14,7 @@ public:
 private:
 	unshort LongestMatch(unshort matchHead, unshort& matchDist, unshort start);
 	void WriteFlagInfo(FILE* fFlag, unshort matchLength, unshort matchDist, unchar& bitInfo, unchar& bitCount);
+	void FillWindow(FILE* fIn, unll& lookahead, unshort& start);
 private:
 	unchar* _pWin;
 	HashTable _ht;

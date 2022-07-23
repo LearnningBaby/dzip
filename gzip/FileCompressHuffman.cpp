@@ -106,7 +106,7 @@ void  FileCompressHuffman::UNCompressFile(const std::string& filePath) {
 
 	// 解压后文件的名字
 	std::string unCompressFile = GetFileInfoHead(filePath);
-	unCompressFile += ".uhz.";
+	unCompressFile += "_huff.";
 
 	// a. 读取源文件后缀
 	std::string suffix;
@@ -141,7 +141,7 @@ void  FileCompressHuffman::UNCompressFile(const std::string& filePath) {
 	unchar rdBuff[1024];
 	HuffmanTreeNode<ByteInfo>* cur = ht.GetRoot();
 	while (true) {
-		size_t rdSize = fread(rdBuff, 1, 1024, fIn);
+		size_t rdSize = fread(rdBuff, 1024, 1, fIn);
 		if (0 == rdSize) break;
 		for (size_t i = 0; i < rdSize; i++) {
 			unchar ch = rdBuff[i];
@@ -223,19 +223,24 @@ void FileCompressHuffman::WriteHeadInfo(const std::string& filePath, FILE* fout)
 	}
 	headInfo += std::to_string(appearLineCount);
 	headInfo += '\n';
-	fwrite(headInfo.c_str(),1,headInfo.size(),fout);
-	fwrite(chInfo.c_str(), 1, chInfo.size(), fout);
+	fwrite(headInfo.c_str(), headInfo.size(), 1, fout);
+	fwrite(chInfo.c_str(), chInfo.size(), 1, fout);
 }
 
+
+/*
 
 // 获取文件后缀
 std::string FileCompressHuffman::GetFileSuffix(const std::string& filePath) {
 	return filePath.substr(filePath.find_last_of('.') + 1);
 }
 
+// 获取文件名字,不包含后缀
 std::string FileCompressHuffman::GetFileInfoHead(const std::string& filePath) {
 	return filePath.substr(0,filePath.find_last_of('.'));
 }
+*/
+
 
 //按行读取文件,将信息保存到字符串strInfo中
 void FileCompressHuffman::GetLine(FILE* fIn, std::string& strInfo) {

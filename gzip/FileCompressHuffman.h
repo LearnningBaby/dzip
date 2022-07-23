@@ -36,9 +36,7 @@ public:
 private:
 	void GenerateHuffmanCode(HuffmanTreeNode<ByteInfo>* root); // »ñÈ¡¹þ·òÂü±àÂë
 	void WriteHeadInfo(const std::string& filePath, FILE* fout);
-	std::string GetFileSuffix(const std::string& filePath);
 	void GetLine(FILE* fIn, std::string& strInfo);
-	std::string GetFileInfoHead(const std::string& filePath);
 private:
 	std::vector<ByteInfo> _fileInfo;
 };

@@ -7,6 +7,7 @@ public:
 	~HashTable();
 	void InsertString(unshort& hashAddr, unchar ch, unshort pos, unshort& macthHead);
 	size_t GetPrevMatch(unshort& macthHead);
+	void UpdateTable();
 private:
 	unshort *_prev;
 	unshort *_head;
