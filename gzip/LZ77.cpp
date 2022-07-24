@@ -160,7 +160,7 @@ unshort LZ77::LongestMatch(unshort matchHead, unshort& matchDist,unshort start) 
 			matchDist = curMatchDist;
 		}
 
-	} while ((_ht.GetPrevMatch(matchHead) < limit) && maxMatchCount--);
+	} while ((_ht.GetPrevMatch(matchHead) >= limit) && maxMatchCount--);
 
 	if (curMatchDist > MAX_DIST) {
 		bestMatchLength = 0;

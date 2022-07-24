@@ -1,6 +1,13 @@
-﻿  FileCompressHuffman.cpp
-  HashTable.cpp
-  LZ77.cpp
-  gzip.cpp
+﻿  DZzip.cpp
+d:\users\zdz\desktop\cc_project\gzip\gzip\gzip\dzzip.cpp(94): warning C4267: “=”: 从“size_t”转换到“unshort”，可能丢失数据
+d:\users\zdz\desktop\cc_project\gzip\gzip\gzip\dzzip.cpp(103): warning C4267: “=”: 从“size_t”转换到“unshort”，可能丢失数据
+d:\users\zdz\desktop\cc_project\gzip\gzip\gzip\dzzip.cpp(291): warning C4244: “参数”: 从“unshort”转换到“const _Ty”，可能丢失数据
+          with
+          [
+              _Ty=unchar
+          ]
+d:\users\zdz\desktop\cc_project\gzip\gzip\gzip\dzzip.cpp(732): warning C4267: “=”: 从“size_t”转换到“unshort”，可能丢失数据
+d:\users\zdz\desktop\cc_project\gzip\gzip\gzip\dzzip.cpp(742): warning C4267: “=”: 从“size_t”转换到“unshort”，可能丢失数据
+  main.cpp
   正在生成代码...
   gzip.vcxproj -> D:\Users\zdz\Desktop\cc_project\gzip\gzip\Debug\gzip.exe
