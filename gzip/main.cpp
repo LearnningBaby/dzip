@@ -18,7 +18,6 @@ void Menu() {
 }
 
 
-
 int main()
 {
 	FileCompressHuffman fcp;
@@ -63,13 +62,13 @@ int main()
 		case 5:
 			std::cout << "请输入要压缩的文件全路径: ";
 			std::cin >> fileName;
-			dz.Deflated(fileName);
+			dz.Deflate(fileName);
 			std::cout << "压缩完成!" << std::endl;
 			break;
 		case 6:
 			std::cout << "请输入要解压缩的文件全路径: ";
 			std::cin >> fileName;
-			dz.UNDeflated(fileName);
+			dz.UnDeflate(fileName);
 			std::cout << "解压缩完成!" << std::endl;
 			break;
 		default: 

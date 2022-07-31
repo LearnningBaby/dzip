@@ -1,3 +1,4 @@
+
 #pragma once
 #include <string>
 #include <vector>
@@ -7,7 +8,9 @@
 using std::vector;
 using std::string;
 typedef unsigned char unchar; // 中文问题
-
+using std::cout;
+using std::endl;
+using std::cin;
 
 typedef unsigned long long unll;
 typedef unsigned int uint;
@@ -22,3 +25,9 @@ std::string GetFileSuffix(const std::string& filePath);
 
 // 获取文件名字,不包含后缀
 std::string GetFileInfoHead(const std::string& filePath);
+
+string GetFileName(const string& filePath);
+
+string GetFilePostFix(const string& filePath);
+
+void GetLine(FILE* fIn, string& strInfo);
